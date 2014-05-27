@@ -111,11 +111,11 @@
 #define	gethostbyname2(host,family)		gethostbyname((host))
 #endif
 
-/* The structure returned by recvfrom_flags() */
-struct in_pktinfo {
-  struct in_addr	ipi_addr;	/* dst IPv4 address */
-  int				ipi_ifindex;/* received interface index */
-};
+///* The structure returned by recvfrom_flags() */
+//struct in_pktinfo {
+//  struct in_addr	ipi_addr;	/* dst IPv4 address */
+//  int				ipi_ifindex;/* received interface index */
+//};
 /* $$.It in_pktinfo$$ */
 /* $$.Ib ipi_addr$$ */
 /* $$.Ib ipi_ifindex$$ */

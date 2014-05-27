@@ -14,11 +14,11 @@ CFLAGS+= -g
 all:	${PROGS}
 
 sctpserv01:	sctpserv01.o 
-		${CC} ${CFLAGS} -o $@ sctpserv01.o ${LIBS}
+		${CC} ${CFLAGS} -o $@ sctpserv01.o sctp_wrapper.c sctp_getnostrm.c sctp_addr_to_associd.c ${LIBS}
 
 
-sctpclient01:   sctpclient01.o sctp_strcli.o sctp_strcliecho.o
-		${CC} ${CFLAGS} -o $@ sctpclient01.o sctp_strcli.o sctp_strcliecho.o ${LIBS}
+sctpclient01:   sctpclient01.o sctp_strcli.o sctp_strcliecho.o sctp_wrapper.o sctp_getnostrm.o sctp_addr_to_associd.o
+		${CC} ${CFLAGS} -o $@ sctpclient01.o sctp_strcli.c sctp_strcliecho.o sctp_wrapper.c sctp_getnostrm.c sctp_addr_to_associd.c ${LIBS}
 
 
 sctpserv02:	sctpserv02.o 
