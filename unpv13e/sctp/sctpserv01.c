@@ -35,8 +35,16 @@ main(int argc, char **argv)
 			     &sri,&msg_flags);
 		if(stream_increment) {
 			sri.sinfo_stream++;
-			if(sri.sinfo_stream >= sri.sinfo_assoc_id) 
-                            sri.sinfo_stream = 0;
+//			if(sri.sinfo_stream >= sri.sinfo_assoc_id) 
+//                            sri.sinfo_stream = 0;
+	                socklen_t retsz;
+                        struct sctp_status status;
+                        retsz = sizeof(status);	
+                        bzero(&status,sizeof(status));
+                        status.sstat_assoc_id = sri.sinfo_assoc_id;
+                        getsockopt( sock_fd, IPPROTO_SCTP, SCTP_STATUS, &status, &retsz);
+			if( sri.sinfo_stream >= status.sstat_outstrms)
+				sri.sinfo_stream = 0;
 //			if(sri.sinfo_stream >= sctp_get_no_strms(sock_fd,(SA *)&cliaddr, len)) 
 //				sri.sinfo_stream = 0;
 		}
